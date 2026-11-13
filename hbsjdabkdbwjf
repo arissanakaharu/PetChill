@@ -1,0 +1,71 @@
+[33mcommit 0025db345471db8b964e3d5840a5e069a4e31e00[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Lindsay Marzia Budiman <lindsay.m.budiman@gmail.com>
+Date:   Tue Nov 10 19:28:47 2026 +0700
+
+    Add pet.py
+
+[33mcommit 24a1f402ab1b6a2b30c2ee7c58e53a37e76f38c4[m
+Author: Lindsay Marzia Budiman <lindsay.m.budiman@gmail.com>
+Date:   Tue Nov 10 19:28:15 2026 +0700
+
+    Add focus.py
+
+[33mcommit c09e1b8a620cbd4ab7b1b196fd20d09a4ed85ee1[m
+Author: Lindsay Marzia Budiman <lindsay.m.budiman@gmail.com>
+Date:   Tue Nov 10 19:27:40 2026 +0700
+
+    Add reminder.py
+
+[33mcommit 66273ff5cd5287150a4c153e3da2666b2fe1633a[m
+Author: Lindsay Marzia Budiman <lindsay.m.budiman@gmail.com>
+Date:   Tue Nov 10 19:26:47 2026 +0700
+
+    Add journal.py
+
+[33mcommit 6c67738e236857f4aada20dad7a84e4dcbdec98f[m
+Author: Lindsay Marzia Budiman <lindsay.m.budiman@gmail.com>
+Date:   Tue Nov 10 19:26:17 2026 +0700
+
+    Add mood.py
+
+[33mcommit 74ffda2ae0d3245c6d620d684c30469174457071[m
+Author: Lindsay Marzia Budiman <lindsay.m.budiman@gmail.com>
+Date:   Tue Nov 10 19:25:45 2026 +0700
+
+    Add tasks.py
+
+[33mcommit d68c723a398bcc8454e7f9d3074571665ba7c65d[m
+Author: Lindsay Marzia Budiman <lindsay.m.budiman@gmail.com>
+Date:   Tue Nov 10 19:25:08 2026 +0700
+
+    Add state.py
+
+[33mcommit 0ab51ba2688f0f642ced2e8f138c5e3e3b9cbfde[m
+Author: Lindsay Marzia Budiman <lindsay.m.budiman@gmail.com>
+Date:   Tue Nov 10 19:23:39 2026 +0700
+
+    Add storage.py
+
+[33mcommit 82dbf78327696e75a57d7b8121397a1d5b67ae5d[m
+Author: Hanunnisa Diar <@hanunnisa.diar@gmail.com>
+Date:   Mon Nov 9 19:39:52 2026 +0700
+
+    Move .gitkeep to data
+
+[33mcommit ddb70a4e9a41ed57fc60a727707cf560013e9065[m
+Author: Hanunnisa Diar <@hanunnisa.diar@gmail.com>
+Date:   Mon Nov 9 18:52:12 2026 +0700
+
+    Add Docker and Flet setup
+
+[33mcommit 3dca70cabc4a9d605abf4495244d985439584012[m
+Author: Lindsay Marzia Budiman <lindsay.m.budiman@gmail.com>
+Date:   Mon Nov 9 10:12:11 2026 +0700
+
+    dahsyat
+
+[33mcommit 462cf40640b8158ed7ec5e1d469cac912dacbe8b[m
+Author: Hanunnisa Diar <@hanunnisa.diar@gmail.com>
+Date:   Mon Nov 9 09:28:35 2026 +0700
+
+    create repo
