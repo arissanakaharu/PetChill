@@ -1,4 +1,4 @@
-import uuid # mengimpor library uuid untuk membuat id
+import uuid # mengimpor library uuid untuk membuat ID
 
 # =======================
 # 1. LOGIC FUNCTIONS
@@ -15,4 +15,14 @@ def add_journal(data, content, now): # mendefinisikan fungsi untuk menambah jurn
     } 
     
     journals.append(journal) # menambah jurnal baru ke list journals
+    return data # mengembalikan seluruh dictionary PetChill yang sudah diperbarui
+
+def delete_journal(data, journal_id): # mendefinisikan fungsi untuk menghapus jurnal berdasarkan ID
+    journals = data["journal"] # mengambil list jurnal yang tersimpan di data ke variabel journals
+
+    for journal in journals: # melakukan perulangan untuk setiap dictionary jurnal di dalam list journals
+        if journal["id"] == journal_id: # memeriksa apakah ID jurnal cocok dengan ID yang ingin dihapus
+            journals.remove(journal) # menghapus dictionary jurnal dari list journals
+            break # menghentikan perulangan setelah jurnal yang ingin dihapus ditemukan dan dihapus
+
     return data # mengembalikan seluruh dictionary PetChill yang sudah diperbarui
