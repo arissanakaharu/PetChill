@@ -1,4 +1,5 @@
 import uuid # mengimpor library uuid untuk membuat ID
+from datetime import datetime # mengimpor datetime untuk digunakan pada function get_journal()
 
 # =======================
 # 1. LOGIC FUNCTIONS
@@ -26,3 +27,15 @@ def delete_journal(data, journal_id): # mendefinisikan fungsi untuk menghapus ju
             break # menghentikan perulangan setelah jurnal yang ingin dihapus ditemukan dan dihapus
 
     return data # mengembalikan seluruh dictionary PetChill yang sudah diperbarui
+
+def get_journal(data): # mendefinisikan fungsi untuk mengambil dan mengurutkan semua jurnal
+    journals = data["journal"] # mengambil list jurnal yang tersimpan di data ke variabel journals
+
+    journals.sort(key=lambda journal: datetime.strptime(journal["created_at"], "%d-%m-%Y %H:%M"), reverse=True)
+    # journals.sort() untuk mengurutkan jurnal
+    # key menentukan nilai yang dijadikan acuan untuk mengurutkan jurnal
+    # lambda journal berfungsi mengambil nilai created_at dari setiap jurnal, nilai tersebut digunakan sebagai acuan untuk mengurutkan jurnal
+    # strptime mengubah str tanggal menjadi objek datetime agar bisa dibandingkan berdasarkan waktu
+    # reverse=True mengurutkan dari yang terbaru
+
+    return journals
