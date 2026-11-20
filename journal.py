@@ -38,14 +38,8 @@ def _sort_key(journal): # mendefinisikan fungsi untuk mengambil tanggal jurnal s
         # tujuannya agar jurnal yang tanggalnya bermasalah diletakkan di bagian paling bawah jika memakai reverse=True
 
 def get_journal(data): # mendefinisikan fungsi untuk mengambil dan mengurutkan semua jurnal
-    journals = data["journal"] # mengambil list jurnal yang tersimpan di data ke variabel journals
-
-    journals.sort(key=lambda journal: datetime.strptime(journal["created_at"], "%d-%m-%Y %H:%M"), reverse=True)
-    # journals.sort() untuk mengurutkan jurnal
-    # key menentukan nilai yang dijadikan acuan untuk mengurutkan jurnal
-    # lambda journal berfungsi mengambil nilai created_at dari setiap jurnal, nilai tersebut digunakan sebagai acuan untuk mengurutkan jurnal
-    # strptime mengubah str tanggal menjadi objek datetime agar bisa dibandingkan berdasarkan waktu
-    # reverse=True mengurutkan dari yang terbaru
-
-    return journals # mengembalikan list jurnal yang sudah diurutkan dari terbaru ke terlama
-    # tidak return data karena tugas get_journal() hanya mengambil dan mengurutkan daftar jurnal, bukan mengubah keseluruhan data PetChill
+    return sorted(data.get("journal", []), key=_sort_key, reverse=True)
+    # menggunakan sorted supaya urutan data asli tidak berubah
+    # data.get("journal", []) mengambil list jurnal yang tersimpan di data (jika sudah ada). Jika belum ada, akan mengembalikan list kosong
+    # key=_sort_key menggunakan fungsi _sort_key sebagai acuan dalam mengurutkan jurnal
+    # reverse=True mengurutkan jurnal dari tanggal terbaru ke terlama (descending)
