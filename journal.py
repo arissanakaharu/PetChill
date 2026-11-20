@@ -30,6 +30,13 @@ def delete_journal(data, journal_id): # mendefinisikan fungsi untuk menghapus ju
 
     return data # mengembalikan seluruh dictionary PetChill yang sudah diperbarui
 
+def _sort_key(journal): # mendefinisikan fungsi untuk mengambil tanggal jurnal sebagai dasar pengurutan
+    try: 
+        return datetime.strptime(journal["created_at"], "%d-%m-%Y %H:%M") # mengubah string tanggal menjadi objek datetime agar bisa dibandingkan
+    except (KeyError, ValueError, TypeError):
+        return datetime.min # jika terjadi error, akan mengembalikan nilai datetime  paling kecil
+        # tujuannya agar jurnal yang tanggalnya bermasalah diletakkan di bagian paling bawah jika memakai reverse=True
+
 def get_journal(data): # mendefinisikan fungsi untuk mengambil dan mengurutkan semua jurnal
     journals = data["journal"] # mengambil list jurnal yang tersimpan di data ke variabel journals
 
