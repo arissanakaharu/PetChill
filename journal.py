@@ -6,7 +6,10 @@ from datetime import datetime # mengimpor datetime untuk digunakan pada function
 # =======================
 
 def add_journal(data, content, now): # mendefinisikan fungsi untuk menambah jurnal
-    journals = data["journal"] # mengambil list jurnal yang tersimpan di data ke variabel journals
+    if not content or not content.strip(): # mengecek apakah konten kosong atau hanya berisi spasi
+        return data # mengembalikan seluruh dictionary PetChill yang sudah diperbarui
+
+    journals = data.setdefault("journal", []) # mengambil list jurnal yang tersimpan di data ke variabel journals (jika sudah ada). Jika belum ada, Python otomatis membuat key journal dengan list kosong
     journal_id = str(uuid.uuid4()) # membuat ID unik untuk setiap jurnal menggunakan UUID versi 4
 
     journal = { # membuat dictionary untuk jurnal baru
@@ -38,4 +41,5 @@ def get_journal(data): # mendefinisikan fungsi untuk mengambil dan mengurutkan s
     # strptime mengubah str tanggal menjadi objek datetime agar bisa dibandingkan berdasarkan waktu
     # reverse=True mengurutkan dari yang terbaru
 
-    return journals
+    return journals # mengembalikan list jurnal yang sudah diurutkan dari terbaru ke terlama
+    # tidak return data karena tugas get_journal() hanya mengambil dan mengurutkan daftar jurnal, bukan mengubah keseluruhan data PetChill
