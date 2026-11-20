@@ -22,8 +22,7 @@ def add_journal(data, content, now): # mendefinisikan fungsi untuk menambah jurn
     return data # mengembalikan seluruh dictionary PetChill yang sudah diperbarui
 
 def delete_journal(data, journal_id): # mendefinisikan fungsi untuk menghapus jurnal berdasarkan ID
-    journals = data["journal"] # mengambil list jurnal yang tersimpan di data ke variabel journals
-
+    journals = data.setdefault("journal", []) # mengambil list jurnal yang tersimpan di data ke variabel journals (jika sudah ada). Jika belum ada, Python otomatis membuat key journal dengan list kosong
     for journal in journals: # melakukan perulangan untuk setiap dictionary jurnal di dalam list journals
         if journal["id"] == journal_id: # memeriksa apakah ID jurnal cocok dengan ID yang ingin dihapus
             journals.remove(journal) # menghapus dictionary jurnal dari list journals
