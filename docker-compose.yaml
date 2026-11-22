@@ -1,0 +1,8 @@
+services:
+  petchill:
+    build: .
+    container_name: petchill-app
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - .:/app
