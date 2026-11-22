@@ -1,6 +1,8 @@
 from datetime import datetime
 
 REST_THRESHOLD_MINUTES = 50  # untuk video demo nanti diubah sementara jadi 1 dulu
+MAX_SESSION_HOURS = 4  # batas satu sesi jika user lupa istirahat, lewat dari ini sesi berhenti otomatis
+MAX_SESSION_SECONDS = MAX_SESSION_HOURS * 3600
 
 DEFAULT_FOCUS = {"accumulated_seconds": 0, "is_running": False, "started_at": None}
 
@@ -20,7 +22,8 @@ def _elapsed_seconds(data, now):
         return 0
     try:
         started_at = datetime.fromisoformat(focus["started_at"])
-        return max(0, int((now - started_at).total_seconds()))
+        elapsed = max (0, int((now - started_at).total_seconds()))
+        return min(elapsed, MAX_SESSION_SECONDS)
     except (ValueError, TypeError):
         return 0
 
@@ -42,6 +45,15 @@ def end_focus(data, now):
         focus["is_running"] = False
         focus["started_at"] = None
     return data
+
+def end_if_too_long(data, now):
+    """Mengakhiri sesi otomatis jika sudah mencapai batas maksimum.
+    Mengembalikan True jika sesi baru saja dihentikan."""
+    focus = _focus(data)
+    if focus["is_running"] and _elapsed_seconds(data, now) >= MAX_SESSION_SECONDS:
+        end_focus(data, now)
+        return True
+    return False
 
 
 def get_focus_seconds(data, now):
