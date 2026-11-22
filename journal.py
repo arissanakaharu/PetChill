@@ -1,0 +1,45 @@
+import uuid # mengimpor library uuid untuk membuat ID
+from datetime import datetime # mengimpor datetime untuk digunakan pada function get_journal()
+
+# =======================
+# 1. LOGIC FUNCTIONS
+# =======================
+
+def add_journal(data, content, now): # mendefinisikan fungsi untuk menambah jurnal
+    if not content or not content.strip(): # mengecek apakah konten kosong atau hanya berisi spasi
+        return data # mengembalikan seluruh dictionary PetChill yang sudah diperbarui
+
+    journals = data.setdefault("journal", []) # mengambil list jurnal yang tersimpan di data ke variabel journals (jika sudah ada). Jika belum ada, Python otomatis membuat key journal dengan list kosong
+    journal_id = str(uuid.uuid4()) # membuat ID unik untuk setiap jurnal menggunakan UUID versi 4
+
+    journal = { # membuat dictionary untuk jurnal baru
+        "id": journal_id, 
+        "content": content, 
+        "created_at": now.strftime("%d-%m-%Y %H:%M") # mengubah objek datetime menjadi string dengan format tanggal dan waktu yang ditentukan
+    } 
+    
+    journals.append(journal) # menambah jurnal baru ke list journals
+    return data # mengembalikan seluruh dictionary PetChill yang sudah diperbarui
+
+def delete_journal(data, journal_id): # mendefinisikan fungsi untuk menghapus jurnal berdasarkan ID
+    journals = data.setdefault("journal", []) # mengambil list jurnal yang tersimpan di data ke variabel journals (jika sudah ada). Jika belum ada, Python otomatis membuat key journal dengan list kosong
+    for journal in journals: # melakukan perulangan untuk setiap dictionary jurnal di dalam list journals
+        if journal["id"] == journal_id: # memeriksa apakah ID jurnal cocok dengan ID yang ingin dihapus
+            journals.remove(journal) # menghapus dictionary jurnal dari list journals
+            break # menghentikan perulangan setelah jurnal yang ingin dihapus ditemukan dan dihapus
+
+    return data # mengembalikan seluruh dictionary PetChill yang sudah diperbarui
+
+def _sort_key(journal): # mendefinisikan fungsi untuk mengambil tanggal jurnal sebagai dasar pengurutan
+    try: 
+        return datetime.strptime(journal["created_at"], "%d-%m-%Y %H:%M") # mengubah string tanggal menjadi objek datetime agar bisa dibandingkan
+    except (KeyError, ValueError, TypeError):
+        return datetime.min # jika terjadi error, akan mengembalikan nilai datetime  paling kecil
+        # tujuannya agar jurnal yang tanggalnya bermasalah diletakkan di bagian paling bawah jika memakai reverse=True
+
+def get_journal(data): # mendefinisikan fungsi untuk mengambil dan mengurutkan semua jurnal
+    return sorted(data.get("journal", []), key=_sort_key, reverse=True)
+    # menggunakan sorted supaya urutan data asli tidak berubah
+    # data.get("journal", []) mengambil list jurnal yang tersimpan di data (jika sudah ada). Jika belum ada, akan mengembalikan list kosong
+    # key=_sort_key menggunakan fungsi _sort_key sebagai acuan dalam mengurutkan jurnal
+    # reverse=True mengurutkan jurnal dari tanggal terbaru ke terlama (descending)
