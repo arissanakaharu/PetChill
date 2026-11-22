@@ -54,6 +54,24 @@ class TestFocus(unittest.TestCase):
         d["focus"]["started_at"] = "bukan-tanggal"
         self.assertEqual(focus.get_focus_seconds(d, m(10)), 0)
 
+    def test_session_is_capped_at_max(self):
+        d = focus.start_focus(new_data(), m(0))
+        self.assertEqual(focus.get_focus_seconds(d, m(300)), focus.MAX_SESSION_SECONDS)
+
+    def test_end_if_too_long_stops_session(self):
+        d = focus.start_focus(new_data(), m(0))
+        self.assertTrue(focus.end_if_too_long(d, m(300)))
+        self.assertFalse(d["focus"]["is_running"])
+        self.assertEqual(d["focus"]["accumulated_seconds"], focus.MAX_SESSION_SECONDS)
+
+    def test_end_if_too_long_does_nothing_before_max(self):
+        d = focus.start_focus(new_data(), m(0))
+        self.assertFalse(focus.end_if_too_long(d, m(239)))
+        self.assertTrue(d["focus"]["is_running"])
+
+    def test_end_if_too_long_without_session(self):
+        self.assertFalse(focus.end_if_too_long(new_data(), m(300)))    
+
 
 if __name__ == "__main__":
     unittest.main()
