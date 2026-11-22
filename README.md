@@ -128,7 +128,7 @@ Logika tiap fitur dibuat sebagai fungsi murni (menerima `data` dan `now`, mengem
 
 ## Alur kerja tim
 
-Setiap fitur dikerjakan di branch sendiri (misalnya `feature/journal`), digabung ke `main` lewat pull request yang direview anggota lain, dan `main` selalu bisa dijalankan. Detailnya ada di [ALUR_KERJA_TIM.md](ALUR_KERJA_TIM.md).
+Setiap fitur dikerjakan di branch sendiri (misalnya `feature/journal`), digabung ke `main` lewat pull request yang direview anggota lain, dan `main` selalu bisa dijalankan.
 
 
 
